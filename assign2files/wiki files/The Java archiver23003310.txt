@@ -1,0 +1,1 @@
+jar — (short for Java archiver) is a tool for creating Java archives or jar files — a file with .jar as the extension. A Java archive is a collection of compiled Java classes and other resources which those classes may require (such as text files, configuration files, images) at runtime. Internally, a jar file is really a .zip file.

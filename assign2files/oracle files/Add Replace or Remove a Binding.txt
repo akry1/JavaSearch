@@ -1,0 +1,47 @@
+
+The Context interface contains methods for adding, replacing, and removing a binding in a context.
+Adding a Binding
+
+Context.bind() is used to add a binding to a context. It accepts as arguments the name of the object and the object to be bound.
+
+Before you go on: The examples in this lesson require that you make additions to the schema. You must either turn off schema-checking in the LDAP server or add 
+the schema that accompanies this tutorial to the server. Both of these tasks are typically performed by the directory server's administrator. See the 
+LDAP Setuplesson.
+
+
+// Create the object to be bound
+Fruit fruit = new Fruit("orange");
+
+// Perform the bind
+ctx.bind("cn=Favorite Fruit", fruit);
+
+
+This example creates an object of class 
+Fruit and binds it to the name "cn=Favorite Fruit" in the context ctx. If you subsequently looked up the name "cn=Favorite Fruit" in ctx, then you would get the fruit object. Note that to compile the Fruit class, you need the 
+FruitFactory   class.
+If you were to run this example twice, then the second attempt would fail with a 
+NameAlreadyBoundException. This is because the name "cn=Favorite Fruit" is already bound. For the second attempt to succeed, you would have to use 
+rebind().
+Adding or Replacing a Binding
+rebind() is used to add or replace a binding. It accepts the same arguments as bind(), but the semantics are such that if the name is already bound, then it will be unbound and the newly given object will be bound.
+
+// Create the object to be bound
+Fruit fruit = new Fruit("lemon");
+
+// Perform the bind
+ctx.rebind("cn=Favorite Fruit", fruit);
+
+When you run 
+this example, it will replace the binding created by the 
+bind() example.
+Removing a Binding
+To remove a binding, you use 
+unbind().
+
+// Remove the binding
+ctx.unbind("cn=Favorite Fruit");
+
+
+This example, when run, removes the binding that was created by the 
+bind() or 
+rebind() example.

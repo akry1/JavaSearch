@@ -1,0 +1,1 @@
+interface is a Java keyword. It starts the declaration of a Java Interface.<br />For example:<br /><br /><br /><br /><br /><br /><br />public interface SampleInterface<br />{<br />   public void method1();<br />   //...<br />}<br /><br /><br /><br /><br />See also:<br /><br />Java Programming/Keywords/new

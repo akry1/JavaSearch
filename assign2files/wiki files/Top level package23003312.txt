@@ -1,0 +1,1 @@
+A class with this package declaration<br /><br /><br /><br />Code section 2.1: Package declaration<br /><br /><br />package example;<br /><br /><br /><br /><br />has to be in a directory named example.

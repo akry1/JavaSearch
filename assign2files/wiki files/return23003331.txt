@@ -1,0 +1,1 @@
+return is a Java keyword.<br />Returns a primitive value, or an object reference, or nothing(void). It does not return object values, only object references.<br />Syntax:<br /><br />return variable;  // --- Returns variable<br />or<br />return;           // --- Returns nothing

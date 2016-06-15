@@ -1,0 +1,1 @@
+Methods are the third and most important type of class member. This class contains three methods in which the behavior of the Distance class is defined: printDistance(), main(), and intValue()

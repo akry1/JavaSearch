@@ -1,0 +1,40 @@
+.small-text{
+    font-family: Gill Sans, Verdana;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.text2 {
+    font-size: 30px;
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    font-weight: 400;
+    color: #444;
+    line-height: 44px;
+    margin: 0 0 2px;
+}
+
+.text{
+    color: #111;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 35px;
+    margin: 0 0 2px;
+}
+
+.tooltip {
+    color: white;
+    position: absolute;
+    text-align: center;
+    width: 140px;
+    height: 65px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: #A80505;
+    border: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+}

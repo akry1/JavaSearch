@@ -1,0 +1,1 @@
+jdb — (short for Java debugger) is a command-line console that provides a debugging environment for Java programs. Although you can use this command line console, IDE's normally provide easier to use debugging environments.

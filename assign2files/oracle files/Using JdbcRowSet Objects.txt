@@ -1,0 +1,218 @@
+
+A JdbcRowSet object is an enhanced ResultSet object. It maintains a connection to its data source, just as a ResultSet object does. The big difference is that it has a set of properties and a listener notification mechanism that make it a JavaBeans component.
+One of the main uses of a JdbcRowSet object is to make a ResultSet object scrollable and updatable when it does not otherwise have those capabilities.
+This section covers the following topics:
+
+Creating JdbcRowSet Objects
+Default JdbcRowSet Objects
+Setting Properties
+Using JdbcRowSet Objects
+Code Sample
+
+
+Creating JdbcRowSet Objects
+You can create a JdbcRowSet object in various ways:
+
+By using the reference implementation constructor that takes a ResultSet object
+By using the reference implementation constructor that takes a Connection object
+By using the reference implementation default constructor
+By using an instance of RowSetFactory, which is created from the class RowSetProvider
+
+Note: Alternatively, you can use the constructor from the JdbcRowSet implementation of your JDBC driver. However, implementations of the RowSet interface will differ from the reference implementation. These implementations will have different names and constructors. For example, the Oracle JDBC driver's implementation of the JdbcRowSet interface is named oracle.jdbc.rowset.OracleJDBCRowSet.
+
+Passing ResultSet Objects
+The simplest way to create a JdbcRowSet object is to produce a ResultSet object and pass it to the JdbcRowSetImpl constructor. Doing this not only creates a JdbcRowSet object but also populates it with the data in the ResultSet object.
+Note: The ResultSet object that is passed to the JdbcRowSetImpl constructor must be scrollable.
+As an example, the following code fragment uses the Connection object con to create a Statement object, stmt, which then executes a query. The query produces the ResultSet object rs, which is passed to the constructor to create a new JdbcRowSet object initialized with the data in rs:
+
+stmt = con.createStatement(
+           ResultSet.TYPE_SCROLL_SENSITIVE,
+           ResultSet.CONCUR_UPDATABLE);
+rs = stmt.executeQuery("select * from COFFEES");
+jdbcRs = new JdbcRowSetImpl(rs);
+
+A JdbcRowSet object created with a ResultSet object serves as a wrapper for the ResultSet object. Because the RowSet object rs is scrollable and updatable, jdbcRs is also scrollable and updatable. If you have run the method createStatement without any arguments, rs would not be scrollable or updatable, and neither would jdbcRs.
+
+Passing Connection Objects
+The first statement in the following code excerpt from JdbcRowSetSample creates a JdbcRowSet object that connects to the database with the Connection object con:
+
+jdbcRs = new JdbcRowSetImpl(con);
+jdbcRs.setCommand("select * from COFFEES");
+jdbcRs.execute();
+
+The object jdbcRs contains no data until you specify a SQL statement with the method setCommand, then run the method execute.
+The object jdbcRs is scrollable and updatable; by default, JdbcRowSet and all other RowSet objects are scrollable and updatable unless otherwise specified. See Default JdbcRowSet Objects for more information about JdbcRowSet properties you can specify.
+
+Using the Default Constructor
+The first statement in the following code excerpt creates an empty JdbcRowSet object.
+
+public void createJdbcRowSet(String username, String password) {
+
+    jdbcRs = new JdbcRowSetImpl();
+    jdbcRs.setCommand("select * from COFFEES");
+    jdbcRs.setUrl("jdbc:myDriver:myAttribute");
+    jdbcRs.setUsername(username);
+    jdbcRs.setPassword(password);
+    jdbcRs.execute();
+    // ...
+}
+
+The object jdbcRs contains no data until you specify a SQL statement with the method setCommand, specify how the JdbcResultSet object connects the database, and then run the method execute.
+All of the reference implementation constructors assign the default values for the properties listed in the section Default JdbcRowSet Objects.
+
+Using the RowSetFactory Interface
+With RowSet 1.1, which is part of Java SE 7 and later, you can use an instance of RowSetFactory to create a JdbcRowSet object. For example, the following code excerpt uses an instance of the RowSetFactory interface to create the JdbcRowSet object, jdbcRs:
+
+public void createJdbcRowSetWithRowSetFactory(
+    String username, String password)
+    throws SQLException {
+
+    RowSetFactory myRowSetFactory = null;
+    JdbcRowSet jdbcRs = null;
+    ResultSet rs = null;
+    Statement stmt = null;
+
+    try {
+        myRowSetFactory = RowSetProvider.newFactory();
+        jdbcRs = myRowSetFactory.createJdbcRowSet();
+
+        jdbcRs.setUrl("jdbc:myDriver:myAttribute");
+        jdbcRs.setUsername(username);
+        jdbcRs.setPassword(password);
+
+        jdbcRs.setCommand("select * from COFFEES");
+        jdbcRs.execute();
+
+        // ...
+    }
+}
+
+The following statement creates the RowSetProvider object myRowSetFactory with the default RowSetFactory implementation, com.sun.rowset.RowSetFactoryImpl:
+
+myRowSetFactory = RowSetProvider.newFactory();
+
+Alternatively, if your JDBC driver has its own RowSetFactory implementation, you may specify it as an argument of the newFactory method.
+The following statements create the JdbcRowSet object jdbcRs and configure its database connection properties:
+
+jdbcRs = myRowSetFactory.createJdbcRowSet();
+jdbcRs.setUrl("jdbc:myDriver:myAttribute");
+jdbcRs.setUsername(username);
+jdbcRs.setPassword(password);
+
+The RowSetFactory interface contains methods to create the different types of RowSet implementations available in RowSet 1.1 and later:
+
+createCachedRowSet
+createFilteredRowSet
+createJdbcRowSet
+createJoinRowSet
+createWebRowSet
+
+
+Default JdbcRowSet Objects
+When you create a JdbcRowSet object with the default constructor, the new JdbcRowSet object will have the following properties:
+
+type: ResultSet.TYPE_SCROLL_INSENSITIVE (has a scrollable cursor)
+concurrency: ResultSet.CONCUR_UPDATABLE (can be updated)
+escapeProcessing: true (the driver will do escape processing; when escape processing is enabled, the driver will scan for any escape syntax and translate it into code that the particular database understands)
+maxRows: 0 (no limit on the number of rows)
+maxFieldSize: 0 (no limit on the number of bytes for a column value; applies only to columns that store BINARY, VARBINARY, LONGVARBINARY, CHAR, VARCHAR, and LONGVARCHAR values)
+queryTimeout: 0 (has no time limit for how long it takes to execute a query)
+showDeleted: false (deleted rows are not visible)
+transactionIsolation: Connection.TRANSACTION_READ_COMMITTED (reads only data that has been committed)
+typeMap: null (the type map associated with a Connection object used by this RowSet object is null)
+
+The main thing you must remember from this list is that a JdbcRowSet and all other RowSet objects are scrollable and updatable unless you set different values for those properties.
+
+Setting Properties
+The section Default JdbcRowSet Objects lists the properties that are set by default when a new JdbcRowSet object is created. If you use the default constructor, you must set some additional properties before you can populate your new JdbcRowSet object with data.
+In order to get its data, a JdbcRowSet object first needs to connect to a database. The following four properties hold information used in obtaining a connection to a database.
+
+username: the name a user supplies to a database as part of gaining access
+password: the user's database password
+url: the JDBC URL for the database to which the user wants to connect
+datasourceName: the name used to retrieve a DataSource object that has been registered with a JNDI naming service
+
+Which of these properties you set depends on how you are going to make a connection. The preferred way is to use a DataSource object, but it may not be practical for you to register a DataSource object with a JNDI naming service, which is generally done by a system administrator. Therefore, the code examples all use the DriverManager mechanism to obtain a connection, for which you use the url property and not the datasourceName property.
+Another property that you must set is the command property. This property is the query that determines what data the JdbcRowSet object will hold. For example, the following line of code sets the command property with a query that produces a ResultSet object containing all the data in the table COFFEES:
+
+jdbcRs.setCommand("select * from COFFEES");
+
+After you have set the command property and the properties necessary for making a connection, you are ready to populate the jdbcRs object with data by calling the execute method.
+
+jdbcRs.execute();
+
+The execute method does many things for you in the background:
+
+It makes a connection to the database using the values you assigned to the url, username, and password properties.
+It executes the query you set in the command property.
+It reads the data from the resulting ResultSet object into the jdbcRs object.
+
+
+Using JdbcRowSet Objects
+You update, insert, and delete a row in a JdbcRowSet object the same way you update, insert, and delete a row in an updatable ResultSet object. Similarly, you navigate a JdbcRowSet object the same way you navigate a scrollable ResultSet object.
+The Coffee Break chain of coffee houses acquired another chain of coffee houses and now has a legacy database that does not support scrolling or updating of a result set. In other words, any ResultSet object produced by this legacy database does not have a scrollable cursor, and the data in it cannot be modified. However, by creating a JdbcRowSet object populated with the data from a ResultSet object, you can, in effect, make the ResultSet object scrollable and updatable.
+As mentioned previously, a JdbcRowSet object is by default scrollable and updatable. Because its contents are identical to those in a ResultSet object, operating on the JdbcRowSet object is equivalent to operating on the ResultSet object itself. And because a JdbcRowSet object has an ongoing connection to the database, changes it makes to its own data are also made to the data in the database.
+This section covers the following topics:
+
+Navigating JdbcRowSet Objects
+Updating Column Values
+Inserting Rows
+Deleting Rows
+
+
+Navigating JdbcRowSet Objects
+A ResultSet object that is not scrollable can use only the next method to move its cursor forward, and it can move the cursor only forward from the first row to the last row. A default JdbcRowSet object, however, can use all of the cursor movement methods defined in the ResultSet interface.
+A JdbcRowSet object can call the method next, and it can also call any of the other ResultSet cursor movement methods. For example, the following lines of code move the cursor to the fourth row in the jdbcRs object and then back to the third row:
+
+jdbcRs.absolute(4);
+jdbcRs.previous();
+
+The method previous is analogous to the method next in that it can be used in a while loop to traverse all of the rows in order. The difference is that you must move the cursor to a position after the last row, and previous moves the cursor toward the beginning.
+
+Updating Column Values
+You update data in a JdbcRowSet object the same way you update data in a ResultSet object.
+Assume that the Coffee Break owner wants to raise the price for a pound of Espresso coffee. If the owner knows that Espresso is in the third row of the jdbcRs object, the code for doing this might look like the following:
+
+jdbcRs.absolute(3);
+jdbcRs.updateFloat("PRICE", 10.99f);
+jdbcRs.updateRow();
+
+The code moves the cursor to the third row and changes the value for the column PRICE to 10.99, and then updates the database with the new price.
+Calling the method updateRow updates the database because jdbcRs has maintained its connection to the database. For disconnected RowSet objects, the situation is different.
+
+Inserting Rows
+If the owner of the Coffee Break chain wants to add one or more coffees to what he offers, the owner will need to add one row to the COFFEES table for each new coffee, as is done in the following code fragment from JdbcRowSetSample. Notice that because the jdbcRs object is always connected to the database, inserting a row into a JdbcRowSet object is the same as inserting a row into a ResultSet object: You move to the cursor to the insert row, use the appropriate updater method to set a value for each column, and call the method insertRow:
+
+jdbcRs.moveToInsertRow();
+jdbcRs.updateString("COF_NAME", "HouseBlend");
+jdbcRs.updateInt("SUP_ID", 49);
+jdbcRs.updateFloat("PRICE", 7.99f);
+jdbcRs.updateInt("SALES", 0);
+jdbcRs.updateInt("TOTAL", 0);
+jdbcRs.insertRow();
+
+jdbcRs.moveToInsertRow();
+jdbcRs.updateString("COF_NAME", "HouseDecaf");
+jdbcRs.updateInt("SUP_ID", 49);
+jdbcRs.updateFloat("PRICE", 8.99f);
+jdbcRs.updateInt("SALES", 0);
+jdbcRs.updateInt("TOTAL", 0);
+jdbcRs.insertRow();
+
+When you call the method insertRow, the new row is inserted into the jdbcRs object and is also inserted into the database. The preceding code fragment goes through this process twice, so two new rows are inserted into the jdbcRs object and the database.
+
+Deleting Rows
+As is true with updating data and inserting a new row, deleting a row is just the same for a JdbcRowSet object as for a ResultSet object. The owner wants to discontinue selling French Roast decaffeinated coffee, which is the last row in the jdbcRs object. In the following lines of code, the first line moves the cursor to the last row, and the second line deletes the last row from the jdbcRs object and from the database:
+
+jdbcRs.last();
+jdbcRs.deleteRow();
+
+
+Code Sample
+The sample JdbcRowSetSample does the following:
+
+Creates a new JdbcRowSet object initialized with the ResultSet object that was produced by the execution of a query that retrieves all the rows in the COFFEES table
+Moves the cursor to the third row of the COFFEES table and updates the PRICE column in that row
+Inserts two new rows, one for HouseBlend and one for HouseDecaf
+Moves the cursor to the last row and deletes it
+

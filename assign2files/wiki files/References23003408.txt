@@ -1,0 +1,1 @@
+↑ http://www.cloudera.com/documentation/archive/cdh/4-x/4-7-0/CDH4-Installation-Guide/cdh4ig_topic_13_7.html<br />↑ http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html<br />↑ http://docs.oracle.com/database/121/IMURG/ch_appdev.htm#IMURG11551

@@ -1,0 +1,1 @@
+primitive type <br />One of the types that do not require allocation on stack, such as int, byte, or long.

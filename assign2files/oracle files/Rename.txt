@@ -1,0 +1,17 @@
+
+You can rename an object in a context by using 
+Context.rename().
+
+// Rename to Scott S
+ctx.rename("cn=Scott Seligman", "cn=Scott S");
+
+
+This example renames the object that was bound to "cn=Scott Seligman" to "cn=Scott S". After verifying that the object got renamed, the program renames it to its original name ("cn=Scott Seligman"), as follows.
+
+// Rename back to Scott Seligman
+ctx.rename("cn=Scott S", "cn=Scott Seligman");
+
+For more examples on renaming of LDAP entries check out the 
+
+Advanced Topics for LDAP users
+ lesson.

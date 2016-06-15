@@ -1,0 +1,46 @@
+
+In the JDK releases prior to 5.0, there is no direct way of obtaining the Distinguished Name (DN) from the search results. The SearchResults.getName() method always returns the name that is relative to the context on which the search is performed. In order to get the absolute, or full name of the search entry some amount of book-keeping is required to track the ancestor contexts. Two new APIs below are added in JDK 5.0 to retrieve the absolute name from the NameClassPair, whenever a search, list, or listBindings operation is performed on a context:
+
+
+NameClassPair.getNameInNameSpace(Name name)
+
+NameClassPair.getNameInNameSpace(String name)
+
+Here is an example that retrieves DNs from an LDAP search:
+
+     public static void printSearchEnumeration(NamingEnumeration retEnum) {
+         try {
+             while (retEnum.hasMore()) {
+                 SearchResult sr = (SearchResult) retEnum.next();
+                 System.out.println(">>" + sr.getNameInNamespace());
+             }
+         } catch (NamingException e) {
+             e.printStackTrace();
+         }
+     }
+
+The complete example can be obtained from 
+here. This program generates the output as below:
+
+        >>cn=Jon Ruiz, ou=People, o=JNDITutorial
+        >>cn=Scott Seligman, ou=People, o=JNDITutorial
+        >>cn=Samuel Clemens, ou=People, o=JNDITutorial
+        >>cn=Rosanna Lee, ou=People, o=JNDITutorial
+        >>cn=Maxine Erlund, ou=People, o=JNDITutorial
+        >>cn=Niels Bohr, ou=People, o=JNDITutorial
+        >>cn=Uri Geller, ou=People, o=JNDITutorial
+        >>cn=Colleen Sullivan, ou=People, o=JNDITutorial
+        >>cn=Vinnie Ryan, ou=People, o=JNDITutorial
+        >>cn=Rod Serling, ou=People, o=JNDITutorial
+        >>cn=Jonathan Wood, ou=People, o=JNDITutorial
+        >>cn=Aravindan Ranganathan, ou=People, o=JNDITutorial
+        >>cn=Ian Anderson, ou=People, o=JNDITutorial
+        >>cn=Lao Tzu, ou=People, o=JNDITutorial
+        >>cn=Don Knuth, ou=People, o=JNDITutorial
+        >>cn=Roger Waters, ou=People, o=JNDITutorial
+        >>cn=Ben Dubin, ou=People, o=JNDITutorial
+        >>cn=Spuds Mackenzie, ou=People, o=JNDITutorial
+        >>cn=John Fowler, ou=People, o=JNDITutorial
+        >>cn=Londo Mollari, ou=People, o=JNDITutorial
+        >>cn=Ted Geisel, ou=People,o=JNDITutorial 
+

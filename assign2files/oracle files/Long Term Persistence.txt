@@ -1,0 +1,92 @@
+
+Long-term persistence is a model that enables beans to be saved in XML format.
+Information on the XML format and on how to implement long-term persistence for non-beans can be found in 
+XML Schema and 
+Using XMLEncoder.
+Encoder and Decoder
+The 
+XMLEncoder class is assigned to write output files for textual representation of Serializable objects. The following code fragment is an example of writing a Java bean and its properties in XML format:
+
+XMLEncoder encoder = new XMLEncoder(
+           new BufferedOutputStream(
+           new FileOutputStream("Beanarchive.xml")));
+
+encoder.writeObject(object);
+encoder.close(); 
+
+The 
+XMLDecoder class reads an XML document that was created with XMLEncoder:
+
+XMLDecoder decoder = new XMLDecoder(
+    new BufferedInputStream(
+    new FileInputStream("Beanarchive.xml")));
+
+Object object = decoder.readObject();
+decoder.close();
+
+What's in XML?
+An XML bean archive has its own specific syntax, which includes the following tags to represent each bean element:
+
+an XML preamble to describe a version of XML and type of encoding
+a <java> tag to embody all object elements of the bean
+an <object> tag to represent a set of method calls needed to reconstruct an object from its serialized form
+
+<object class="javax.swing.JButton" method="new">
+    <string>Ok</string>
+</object>
+
+or statements
+
+<object class="javax.swing.JButton">
+    <void method="setText">
+        <string>Cancel</string>
+            </void>
+    </object>
+
+
+tags to define appropriate primitive types:
+
+<boolean>
+<byte>
+<char>
+<short>
+<int>
+<long>
+<float>
+<double>
+
+
+<int>5555</int>
+
+
+a <class> tag to represent an instance of Class.
+
+<class>java.swing.JFrame</class>
+
+
+an <array> tag to define an array
+
+<array class="java.lang.String" length="5">
+</array>
+
+
+
+The following code represents an XML archive that will be generated for the SimpleBean component:
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<java>
+  <object class="javax.swing.JFrame">
+    <void method="add">
+      <object class="java.awt.BorderLayout" field="CENTER"/>
+      <object class="SimpleBean"/>
+    </void>
+    <void property="defaultCloseOperation">
+      <object class="javax.swing.WindowConstants" field="DISPOSE_ON_CLOSE"/>
+    </void>
+    <void method="pack"/>
+    <void property="visible">
+      <boolean>true</boolean>
+    </void>
+  </object>
+</java>
+

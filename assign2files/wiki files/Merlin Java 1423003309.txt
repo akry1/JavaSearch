@@ -1,0 +1,1 @@
+Released in 6 February 2002, Java 1.4 has improved programmer productivity by expanding language features and available APIs:<br /><br />Assertion<br />Regular Expression<br />XML processing<br />Cryptography and Secure Socket Layer (SSL)<br />Non-blocking I/O (NIO)<br />Logging

@@ -1,0 +1,3 @@
+
+The 
+System class implements a number of system utilities. Some of these have already been covered in the previous section on Configuration Utilities. This section covers some of the other system utilities.

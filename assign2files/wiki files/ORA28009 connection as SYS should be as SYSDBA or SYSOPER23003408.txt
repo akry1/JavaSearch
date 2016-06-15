@@ -1,0 +1,1 @@
+Just add " as sysdba" after your Oracle account name, eg:<br /><br />Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:MyDatabase", "MyAccount as sysdba",

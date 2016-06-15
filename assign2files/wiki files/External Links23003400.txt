@@ -1,0 +1,1 @@
+Locate the Graphics class in the online Java API documentation<br />Locate the Color class in the online Java API documentation<br /><br /><br /><br /><br /><br />Java Programming/Graphics<br />Drawing shapes<br />Drawing complex shapes

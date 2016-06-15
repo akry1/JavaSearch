@@ -1,0 +1,1 @@
+try {<br />   Class.forName("com.mysql.jdbc.Driver");<br />   Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/MySite?user=MyAccount&password=MyPassword");<br />   conn.close();<br />} catch(SQLException e) { e.printStackTrace(); }

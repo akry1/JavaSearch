@@ -1,0 +1,1 @@
+EJB 2 Tutorial, interactive Java Lessons<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />To do:<br />Add some exercises like the ones in Variables<br /><br /><br /><br /><br /><br /><br /> Remote Method Invocation<br />Java Programming<br />EJB<br />JavaSpaces

@@ -1,0 +1,1 @@
+This section is a stub.<br />You can help Wikibooks by expanding it.<br /><br /><br />A @Repeatable annotation type is repeatable - i.e. can be specified multiple times on the same class. This meta-annotation was added in Java 8.

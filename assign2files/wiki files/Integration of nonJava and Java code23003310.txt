@@ -1,0 +1,1 @@
+javah — A Java class can call native, or non-Java, code that has been prepared to be called from Java. The details and procedures are specified in the JNI (Java Native Interface). Commonly, native code is written in C (or C++). The JDK tool javah helps to write the necessary C code, by generating C header files and C stub code.

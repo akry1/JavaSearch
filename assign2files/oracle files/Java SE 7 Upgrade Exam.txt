@@ -1,0 +1,245 @@
+
+
+This page maps sections in the Java Tutorials to topics covered in the Update to Java SE 7 Programmer exam.  This exam is associated with the "Oracle Certified Professional, Java SE 7 Programmer" certificate. The topics covered in this exam are:
+
+Language Enhancements
+Design Patterns
+Database Applications with JDBC
+Concurrency
+Localization
+Java File I/O (NIO.2)
+
+Section 1: Language Enhancements
+Item 1: Use String in switch statement.
+
+
+The switch Statement
+
+
+Item 2: Use binary literals, numeric literals with underscores.
+
+
+Primitive Data Types
+
+
+Item 3: Use try-with-resources.
+
+
+The try-with-resources Statement
+
+
+Item 4: Use multi-catch in exception statements.
+
+
+The catch Blocks
+
+
+Item 5: Use diamond syntax with generic declarations.
+
+
+The Diamond
+
+
+Item 6: Use more precise rethrow in exceptions.
+
+
+
+Rethrowing Exceptions with More Inclusive Type Checking (Java Guides)
+
+
+Section 2: Design Patterns
+The Java Tutorials do not cover Design Patterns topics. The following references cover design patterns using the Java programming language:
+
+Head First Design Patterns by Elizabeth Freeman, et al
+Java Design Pattern Essentials by Tony Bevis
+
+
+Item 1: Design a class using the Singleton design pattern.
+
+Item 2: Identify when and how to use composition to solve business problems.
+
+Item 3: Write code to implement the DAO pattern.
+
+Item 4: Design a class that uses the Factory design pattern.
+
+
+Section 3: Database Applications with JDBC
+Item 1: Describe the JDBC API.
+
+
+JDBC Basics: Getting Started
+
+
+Item 2: Identify the Java statements required to connect to a database using JDBC.
+
+
+Establishing a Connection
+
+Connecting with DataSource Objects
+
+
+Item 3: Use the JDBC 4.1 RowSetProvider, RowSetFactory, and new RowSet interfaces.
+
+
+Using RowSet Objects
+
+Using JdbcRowSet Objects
+
+
+Item 4: Use JDBC transactions.
+
+
+Using Transactions
+
+
+Item 5: Use the proper JDBC API to submit queries and read results from the database.
+
+
+Processing SQL Statements with JDBC
+
+
+Item 6: Use JDBC PreparedStatement and CallableStatement.
+
+
+Using Advanced Data Types
+
+Using Stored Procedures
+
+
+
+Section 4: Concurrency
+Item 1: Identify potential threading problems.
+
+
+Memory Consistency Errors
+
+Deadlock
+
+
+Item 2: Use java.util.concurrent collections.
+
+
+Concurrent Collections
+
+
+Item 3: Use atomic variables and locks.
+
+
+Atomic Variables
+
+
+Item 4: Use Executors and ThreadPools.
+
+
+Executors
+
+Executor Interfaces
+
+Thread Pools
+
+
+Item 5: Use the parallel Fork/Join framework.
+
+
+Fork/Join
+
+
+
+Section 5: Localization
+Item 1: Describe the advantages of localizing an application.
+
+
+Internationalization: Introduction
+
+
+Item 2: Define what a locale represents.
+
+
+Setting the Locale
+
+
+Item 3: Read and set the locale by using the Locale object.
+
+
+Setting the Locale
+
+Creating a Locale
+
+
+Item 4: Build a resource bundle for each locale.
+
+
+About the ResourceBundle Class
+
+Backing a ResourceBundle with Properties Files
+
+
+Item 5: Call a resource bundle from an application.
+
+
+Customizing Resource Bundle Loading
+
+
+Item 6: Select a resource bundle based on locale.
+
+
+About the ResourceBundle Class
+
+
+Item 7: Format text for localization by using NumberFormat and DateFormat.
+
+
+Numbers and Currencies
+
+Dates and Times
+
+
+
+Section 6: Java File I/O (NIO.2)
+Item 1: Use the Path class to operate on file and directory paths.
+
+
+What Is a Path? (And Other File System Facts)
+
+Path Operations
+
+
+Item 2: Use the Files class to check, delete, copy, or move a file or directory.
+
+
+File Operations
+
+Checking a File or Directory
+
+Deleting a File or Directory
+
+Copying a File or Directory
+
+Moving a File or Directory
+
+
+Item 3: Read and change file and directory attributes.
+
+
+Managing Metadata (File and File Store Attributes)
+
+
+Item 4: Recursively access a directory tree.
+
+
+Walking the File Tree
+
+
+Item 5: Find a file by using the PathMatcher class.
+
+
+Finding Files
+
+What is a Glob?
+
+
+Item 6: Watch a directory for changes by using WatchService.
+
+
+Watching a Directory for Changes
+

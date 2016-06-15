@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Java Search</title>
+</head>
+<body>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="jquery-2.2.0.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="d3.min.js"></script>
+    <div class="small-text">
+    Aravinda Kumar Reddy Yempada<br />
+    1208601637
+    </div>
+    <div class="container">
+        <div class="row"  align="center"><h2>Adaptive Web Assignment 2</h2></div>
+        <div class="row"  align="center"><h3>Search Java Content</h3></div>
+        <br /><br />
+            <div>
+
+                <label for="searchQuery"> <span>
+                <input type="text" id="searchQuery" class="input-lg" style="width:400px">
+                <button id="searchSubmit" type="submit" class="btn-lg btn-default" >Submit</button>
+               </span></label>
+
+            </div>
+        <button id="toggle" class="btn btn-default">Hide the Queries</button>
+        <div id="queries" class="list-group">
+
+        </div>
+        <div id="results" class="text">
+            <br />
+            <h1>Recommendations</h1>
+            <br />
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#0" role="tab" data-toggle="tab">1</a></li>
+                <li role="presentation"><a href="#1" role="tab" data-toggle="tab">2</a></li>
+                <li role="presentation"><a href="#2" role="tab" data-toggle="tab">3</a></li>
+                <li role="presentation"><a href="#3" role="tab" data-toggle="tab">4</a></li>
+                <li role="presentation"><a href="#4" role="tab" data-toggle="tab">5</a></li>
+                <li role="presentation"><a href="#5" role="tab" data-toggle="tab">6</a></li>
+                <li role="presentation"><a href="#6" role="tab" data-toggle="tab">7</a></li>
+                <li role="presentation"><a href="#7" role="tab" data-toggle="tab">8</a></li>
+                <li role="presentation"><a href="#8" role="tab" data-toggle="tab">9</a></li>
+                <li role="presentation"><a href="#9" role="tab" data-toggle="tab">10</a></li>
+
+            </ul>
+            <br />
+            <div class="tab-content content">
+                <div role="tabpanel" class="tab-pane active" id="0"></div>
+                <div role="tabpanel" class="tab-pane" id="1" ></div>
+                <div role="tabpanel" class="tab-pane" id="2"></div>
+                <div role="tabpanel" class="tab-pane" id="3"></div>
+                <div role="tabpanel" class="tab-pane" id="4"></div>
+                <div role="tabpanel" class="tab-pane" id="5" ></div>
+                <div role="tabpanel" class="tab-pane" id="6"></div>
+                <div role="tabpanel" class="tab-pane" id="7"></div>
+                <div role="tabpanel" class="tab-pane" id="8"></div>
+                <div role="tabpanel" class="tab-pane" id="9" ></div>
+            </div>
+        </div>
+    </div>
+    <div id="report" class="text2">
+        <h1><u>INDEXING APPROACH</u></h1>
+        The Java WikiBooks content and Oracle Java Tutorials are scraped from the web. The wiki book content is broken into sub-parts based on the topic. <br />
+        For indexing, I have created a custom Analyzer used instead of StandardAnalyzer, by overriding the createComponents method of the Analyzer class. Wikipedia Tokenizer is used instead of Standard Tokenizer.
+        The following filters are applied before indexing:<br />
+        <ul>
+            <li>LowerCaseFilter</li>
+            <li>StopFilter</li>
+            <li>PatternReplaceFilter - to remove non-alphanumeric characters</li>
+            <li>LengthFilter - to remove words less than size 2 and greater than size 30</li>
+            <li>PorterStemFilter -  to stem the text and code</li>
+            <li>NGramTokenFilter -  bigrams and trigrams are used</li>
+        </ul>
+
+        Lucene by default uses TFID similarity for scoring the documents. The similarity measure is not changed. However, the scoring for searching is based on the repeated terms in the query.
+        Repeated terms are boosted while searching. Below is an example:<br /><br />
+        Original Query - You can make a deep copy serialization without creating some files. Copy: Restore: <br />
+        Transformed Query - serialization^1 deep^1 restore^3 creating^1 files^1 copy^3 make^1  <br /><br />
+
+        For the above query 'copy' is boosted while searching the documents. Also, the start word of the query which is capitalized is boosted by 2 times and start word which is not capitalized is
+        boosted by 1.<br />
+
+        <br />
+    </div>
+    <script src="design.js"></script>
+</body>
+</html>

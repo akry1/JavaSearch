@@ -1,0 +1,1 @@
+void is not a type in Java; it represents the absence of a type. Methods which do not return values are declared as void methods.<br />This class defines two void methods:<br /><br /><br /><br />Code section 2.12: Void methods<br /><br /><br />1 public static void main(String[] args) { ... }<br />2 public void printDistance()  { ... }

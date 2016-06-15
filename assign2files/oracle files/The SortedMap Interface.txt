@@ -1,0 +1,35 @@
+
+A 
+SortedMap is a 
+Map that maintains its entries in ascending order, sorted according to the keys' natural ordering, or according to a Comparator provided at the time of the SortedMap creation. Natural ordering and Comparators are discussed in the 
+Object Ordering section. The SortedMap interface provides operations for normal Map operations and for the following:
+
+Range view  performs arbitrary range operations on the sorted map
+Endpoints  returns the first or the last key in the sorted map
+Comparator access  returns the Comparator, if any, used to sort the map
+
+The following interface is the Map analog of 
+SortedSet.
+
+public interface SortedMap<K, V> extends Map<K, V>{
+    Comparator<? super K> comparator();
+    SortedMap<K, V> subMap(K fromKey, K toKey);
+    SortedMap<K, V> headMap(K toKey);
+    SortedMap<K, V> tailMap(K fromKey);
+    K firstKey();
+    K lastKey();
+}
+
+Map Operations
+The operations SortedMap inherits from Map behave identically on sorted maps and normal maps with two exceptions:
+
+The Iterator returned by the iterator operation on any of the sorted map's Collection views traverse the collections in order.
+The arrays returned by the Collection views' toArray operations contain the keys, values, or entries in order.
+
+Although it isn't guaranteed by the interface, the toString method of the Collection views in all the Java platform's SortedMap implementations returns a string containing all the elements of the view, in order.
+Standard Constructors
+By convention, all general-purpose Map implementations provide a standard conversion constructor that takes a Map; SortedMap implementations are no exception. In TreeMap, this constructor creates an instance that orders its entries according to their keys' natural ordering. This was probably a mistake. It would have been better to check dynamically to see whether the specified Map instance was a SortedMap and, if so, to sort the new map according to the same criterion (comparator or natural ordering). Because TreeMap took the approach it did, it also provides a constructor that takes a SortedMap and returns a new TreeMap containing the same mappings as the given SortedMap, sorted according to the same criterion. Note that it is the compile-time type of the argument, not its runtime type, that determines whether the SortedMap constructor is invoked in preference to the ordinary map constructor.
+SortedMap implementations also provide, by convention, a constructor that takes a Comparator and returns an empty map sorted according to the specified Comparator. If null is passed to this constructor, it returns a Map that sorts its mappings according to their keys' natural ordering.
+Comparison to SortedSet
+Because this interface is a precise Map analog of SortedSet, all the idioms and code examples in 
+The SortedSet Interface section apply to SortedMap with only trivial modifications.

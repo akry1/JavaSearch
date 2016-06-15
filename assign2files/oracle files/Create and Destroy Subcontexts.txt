@@ -1,0 +1,44 @@
+
+The Context interface contains methods for creating and destroying a subcontext, a context that is bound in another context of the same type.
+The example described here use an object that has attributes and create a subcontext in the directory. You can use these DirContext methods to associate attributes with the object at the time that the binding or subcontext is added to the namespace. For example, you might create a Person object and bind it to the namespace and at the same time associate attributes about that Person object. The naming equivalent will have no attributes.
+The createSubcontext() differs from bind() in that it creates a new Object i.e a new Context to be bound to the directory while as bind() binds the given Object in the directory.
+Creating a Context
+To create a naming context, you supply to 
+createSubcontext() the name of the context that you want to create. To create a context that has attributes, you supply to 
+DirContext.createSubcontext() the name of the context that you want to create and its attributes.
+
+Before you go on: The examples in this lesson require that you make additions to the schema. You must either turn off schema-checking in the LDAP server or add 
+the schema that accompanies this tutorial to the server. Both of these tasks are typically performed by the directory server's administrator. See the 
+LDAP Setup lesson.
+
+
+// Create attributes to be associated with the new context
+Attributes attrs = new BasicAttributes(true); // case-ignore
+Attribute objclass = new BasicAttribute("objectclass");
+objclass.add("top");
+objclass.add("organizationalUnit");
+attrs.put(objclass);
+
+// Create the context
+Context result = ctx.createSubcontext("NewOu", attrs);
+
+
+This example creates a new context called "ou=NewOu" that has an attribute "objectclass" with two values, "top" and "organizationalUnit", in the context ctx.
+
+# java Create
+ou=Groups: javax.naming.directory.DirContext
+ou=People: javax.naming.directory.DirContext
+ou=NewOu: javax.naming.directory.DirContext
+
+
+This example
+ creates a new context, called "NewOu", that is a child of ctx.
+Destroying a Context
+To destroy a context, you supply to 
+destroySubcontext() the name of the context to destroy.
+
+// Destroy the context
+ctx.destroySubcontext("NewOu");
+
+
+This example destroys the context "NewOu" in the context ctx.

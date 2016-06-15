@@ -1,0 +1,1 @@
+Figure 1:Simple Client Server Implementation<br /><br /><br />In this page there is an example for socket connection.

@@ -1,0 +1,1 @@
+There are two boolean literals<br /><br />true represents a true boolean value<br />false represents a false boolean value<br /><br />There are no other boolean literals, because there are no other boolean values!

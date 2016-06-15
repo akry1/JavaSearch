@@ -1,0 +1,1 @@
+[4] Advanced usage of the @SuppressWarnings(..) annotation<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />To do:<br />Add some exercises like the ones in Variables<br /><br /><br /><br /><br /><br /><br /> Meta-Annotations<br />Java Programming/Annotations<br />Compiler and Annotations<br />Basic I/O

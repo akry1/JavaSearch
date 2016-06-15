@@ -1,0 +1,298 @@
+
+A WebRowSet object is very special because in addition to offering all of the capabilities of a CachedRowSet object, it can write itself as an XML document and can also read that XML document to convert itself back to a WebRowSet object. Because XML is the language through which disparate enterprises can communicate with each other, it has become the standard for Web Services communication. As a consequence, a WebRowSet object fills a real need by enabling Web Services to send and receive data from a database in the form of an XML document.
+The following topics are covered:
+
+Creating and Populating WebRowSet Objects
+Writing and Reading WebRowSet Objects to XML
+What Is in XML Documents
+Making Changes to WebRowSet Objects
+
+The Coffee Break company has expanded to selling coffee online. Users order coffee by the pound from the Coffee Break Web site. The price list is regularly updated by getting the latest information from the company's database. This section demonstrates how to send the price data as an XML document with a WebRowSet object and a single method call.
+
+Creating and Populating WebRowSet Objects
+You create a new WebRowSet object with the default constructor defined in the reference implementation, WebRowSetImpl, as shown in the following line of code:
+
+WebRowSet priceList = new WebRowSetImpl();
+
+Although the priceList object has no data yet, it has the default properties of a BaseRowSet object. Its SyncProvider object is at first set to the RIOptimisticProvider implementation, which is the default for all disconnected RowSet objects. However, the WebRowSet implementation resets the SyncProvider object to be the RIXMLProvider implementation.
+You can use an instance of RowSetFactory, which is created from the RowSetProvider class, to create a WebRowSet object. See Using the RowSetFactory Interface in Using JdbcRowSet Objects for more information.
+The Coffee Break headquarters regularly sends price list updates to its web site. This information on WebRowSet objects will show one way you can send the latest price list in an XML document.
+The price list consists of the data in the columns COF_NAME and PRICE from the table COFFEES. The following code fragment sets the properties needed and populates the priceList object with the price list data:
+
+public void getPriceList(String username, String password) {
+    priceList.setCommand("SELECT COF_NAME, PRICE FROM COFFEES");
+    priceList.setURL("jdbc:mySubprotocol:myDatabase");
+    priceList.setUsername(username);
+    priceList.setPassword(password);
+    priceList.execute();
+    // ...
+}
+
+At this point, in addition to the default properties, the priceList object contains the data in the COF_NAME and PRICE columns from the COFFEES table and also the metadata about these two columns.
+Writing and Reading WebRowSet Object to XML
+To write a WebRowSet object as an XML document, call the method writeXml. To read that XML document's contents into a WebRowSet object, call the method readXml. Both of these methods do their work in the background, meaning that everything, except the results, is invisible to you.
+Using the writeXml Method
+The method writeXml writes the WebRowSet object that invoked it as an XML document that represents its current state. It writes this XML document to the stream that you pass to it. The stream can be an OutputStream object, such as a FileOutputStream object, or a Writer object, such as a FileWriter object. If you pass the method writeXml an OutputStream object, you will write in bytes, which can handle all types of data; if you pass it a Writer object, you will write in characters. The following code demonstrates writing the WebRowSet object priceList as an XML document to the FileOutputStream object oStream:
+
+java.io.FileOutputStream oStream =
+    new java.io.FileOutputStream("priceList.xml");
+priceList.writeXml(oStream);
+
+The following code writes the XML document representing priceList to the FileWriter object writer instead of to an OutputStream object. The FileWriter class is a convenience class for writing characters to a file.
+
+java.io.FileWriter writer =
+    new java.io.FileWriter("priceList.xml");
+priceList.writeXml(writer);
+
+The other two versions of the method writeXml let you populate a WebRowSet object with the contents of a ResultSet object before writing it to a stream. In the following line of code, the method writeXml reads the contents of the ResultSet object rs into the priceList object and then writes priceList to the FileOutputStream object oStream as an XML document.
+
+priceList.writeXml(rs, oStream);
+
+In the next line of code, the writeXml methodpopulates priceList with the contents of rs, but it writes the XML document to a FileWriter object instead of to an OutputStream object:
+
+priceList.writeXml(rs, writer);
+
+Using the readXml Method
+The method readXml parses an XML document in order to construct the WebRowSet object the XML document describes. Similar to the method writeXml, you can pass readXml an InputStream object or a Reader object from which to read the XML document.
+
+java.io.FileInputStream iStream =
+    new java.io.FileInputStream("priceList.xml");
+priceList.readXml(iStream);
+
+java.io.FileReader reader = new
+    java.io.FileReader("priceList.xml");
+priceList.readXml(reader);
+
+Note that you can read the XML description into a new WebRowSet object or into the same WebRowSet object that called the writeXml method. In the scenario, where the price list information is being sent from headquarters to the Web site, you would use a new WebRowSet object, as shown in the following lines of code:
+
+WebRowSet recipient = new WebRowSetImpl();
+java.io.FileReader reader =
+    new java.io.FileReader("priceList.xml");
+recipient.readXml(reader);
+
+
+What Is in XML Documents
+RowSet objects are more than just the data they contain. They have properties and metadata about their columns as well. Therefore, an XML document representing a WebRowSet object includes this other information in addition to its data. Further, the data in an XML document includes both current values and original values. (Recall that original values are the values that existed immediately before the most recent changes to data were made. These values are necessary for checking if the corresponding value in the database has been changed, thus creating a conflict over which value should be persistent: the new value you put in the RowSet object or the new value someone else put in the database.)
+The WebRowSet XML Schema, itself an XML document, defines what an XML document representing a WebRowSet object will contain and also the format in which it must be presented. Both the sender and the recipient use this schema because it tells the sender how to write the XML document (which represents the WebRowSet object) and the recipient how to parse the XML document. Because the actual writing and reading is done internally by the implementations of the methods writeXml and readXml, you, as a user, do not need to understand what is in the WebRowSet XML Schema document.
+XML documents contain elements and subelements in a hierarchical structure. The following are the three main elements in an XML document describing a WebRowSet object:
+
+Properties
+Metadata
+Data
+
+Element tags signal the beginning and end of an element. For example, the <properties> tag signals the beginning of the properties element, and the </properties> tag signals its end. The <map/> tag is a shorthand way of saying that the map subelement (one of the subelements in the properties element) has not been assigned a value. The following sample XML documents uses spacing and indentation to make it easier to read, but those are not used in an actual XML document, where spacing does not mean anything.
+The next three sections show you what the three main elements contain for the WebRowSet priceList object, created in the sample WebRowSetSample.java.
+Properties
+Calling the method writeXml on the priceList object would produce an XML document describing priceList. The properties section of this XML document would look like the following:
+
+<properties>
+  <command>
+    select COF_NAME, PRICE from COFFEES
+  </command>
+  <concurrency>1008</concurrency>
+  <datasource><null/></datasource>
+  <escape-processing>true</escape-processing>
+  <fetch-direction>1000</fetch-direction>
+  <fetch-size>0</fetch-size>
+  <isolation-level>2</isolation-level>
+  <key-columns>
+    <column>1</column>
+  </key-columns>
+  <map>
+  </map>
+  <max-field-size>0</max-field-size>
+  <max-rows>0</max-rows>
+  <query-timeout>0</query-timeout>
+  <read-only>true</read-only>
+  <rowset-type>
+    ResultSet.TYPE_SCROLL_INSENSITIVE
+  </rowset-type>
+  <show-deleted>false</show-deleted>
+  <table-name>COFFEES</table-name>
+  <url>jdbc:mysql://localhost:3306/testdb</url>
+  <sync-provider>
+    <sync-provider-name>
+      com.sun.rowset.providers.RIOptimisticProvider
+    </sync-provider-name>
+    <sync-provider-vendor>
+      Sun Microsystems Inc.
+    </sync-provider-vendor>
+    <sync-provider-version>
+      1.0
+    </sync-provider-version>
+    <sync-provider-grade>
+      2
+    </sync-provider-grade>
+    <data-source-lock>1</data-source-lock>
+  </sync-provider>
+</properties>
+
+Notice that some properties have no value. For example, the datasource property is indicated with the <datasource/> tag, which is a shorthand way of saying <datasource></datasource>. No value is given because the url property is set. Any connections that are established will be done using this JDBC URL, so no DataSource object needs to be set. Also, the username and password properties are not listed because they must remain secret.
+Metadata
+The metadata section of the XML document describing a WebRowSet object contains information about the columns in that WebRowSet object. The following shows what this section looks like for the WebRowSet object priceList. Because the priceList object has two columns, the XML document describing it has two <column-definition> elements. Each <column-definition> element has subelements giving information about the column being described.
+
+<metadata>
+  <column-count>2</column-count>
+  <column-definition>
+    <column-index>1</column-index>
+    <auto-increment>false</auto-increment>
+    <case-sensitive>false</case-sensitive>
+    <currency>false</currency>
+    <nullable>0</nullable>
+    <signed>false</signed>
+    <searchable>true</searchable>
+    <column-display-size>
+      32
+    </column-display-size>
+    <column-label>COF_NAME</column-label>
+    <column-name>COF_NAME</column-name>
+    <schema-name></schema-name>
+    <column-precision>32</column-precision>
+    <column-scale>0</column-scale>
+    <table-name>coffees</table-name>
+    <catalog-name>testdb</catalog-name>
+    <column-type>12</column-type>
+    <column-type-name>
+      VARCHAR
+    </column-type-name>
+  </column-definition>
+  <column-definition>
+    <column-index>2</column-index>
+    <auto-increment>false</auto-increment>
+    <case-sensitive>true</case-sensitive>
+    <currency>false</currency>
+    <nullable>0</nullable>
+    <signed>true</signed>
+    <searchable>true</searchable>
+    <column-display-size>
+      12
+    </column-display-size>
+    <column-label>PRICE</column-label>
+    <column-name>PRICE</column-name>
+    <schema-name></schema-name>
+    <column-precision>10</column-precision>
+    <column-scale>2</column-scale>
+    <table-name>coffees</table-name>
+    <catalog-name>testdb</catalog-name>
+    <column-type>3</column-type>
+    <column-type-name>
+      DECIMAL
+    </column-type-name>
+  </column-definition>
+</metadata>
+
+From this metadata section, you can see that there are two columns in each row. The first column is COF_NAME, which holds values of type VARCHAR. The second column is PRICE, which holds values of type REAL, and so on. Note that the column types are the data types used in the data source, not types in the Java programming language. To get or update values in the COF_NAME column, you use the methods getString or updateString, and the driver makes the conversion to the VARCHAR type, as it usually does.
+Data
+The data section gives the values for each column in each row of a WebRowSet object. If you have populated the priceList object and not made any changes to it, the data element of the XML document will look like the following. In the next section you will see how the XML document changes when you modify the data in the priceList object.
+For each row there is a <currentRow> element, and because priceList has two columns, each <currentRow> element contains two <columnValue> elements.
+
+<data>
+  <currentRow>
+    <columnValue>Colombian</columnValue>
+    <columnValue>7.99</columnValue>
+  </currentRow>
+  <currentRow>
+    <columnValue>
+      Colombian_Decaf
+    </columnValue>
+    <columnValue>8.99</columnValue>
+  </currentRow>
+  <currentRow>
+    <columnValue>Espresso</columnValue>
+    <columnValue>9.99</columnValue>
+  </currentRow>
+  <currentRow>
+    <columnValue>French_Roast</columnValue>
+    <columnValue>8.99</columnValue>
+  </currentRow>
+  <currentRow>
+    <columnValue>French_Roast_Decaf</columnValue>
+    <columnValue>9.99</columnValue>
+  </currentRow>
+</data>
+
+
+Making Changes to WebRowSet Objects
+You make changes to a WebRowSet object the same way you do to a CachedRowSet object. Unlike a CachedRowSet object, however, a WebRowSet object keeps track of updates, insertions, and deletions so that the writeXml method can write both the current values and the original values. The three sections that follow demonstrate making changes to the data and show what the XML document describing the WebRowSet object looks like after each change. You do not have to do anything at all regarding the XML document; any change to it is made automatically, just as with writing and reading the XML document.
+Inserting Rows
+If the owner of the Coffee Break chain wants to add a new coffee to the price list, the code might look like this:
+
+priceList.absolute(3);
+priceList.moveToInsertRow();
+priceList.updateString(COF_NAME, "Kona");
+priceList.updateFloat(PRICE, 8.99f);
+priceList.insertRow();
+priceList.moveToCurrentRow();
+
+In the reference implementation, an insertion is made immediately following the current row. In the preceding code fragment, the current row is the third row, so the new row would be added after the third row and become the new fourth row. To reflect this insertion, the XML document would have the following <insertRow> element added to it after the third <currentRow> element in the <data> element.
+The <insertRow> element will look similar to the following.
+
+<insertRow>
+  <columnValue>Kona</columnValue>
+  <columnValue>8.99</columnValue>
+</insertRow>
+
+Deleting Rows
+The owner decides that Espresso is not selling enough and should be removed from the coffees sold at The Coffee Break shops. The owner therefore wants to delete Espresso from the price list. Espresso is in the third row of the priceList object, so the following lines of code delete it:
+
+priceList.absolute(3); priceList.deleteRow();
+
+The following <deleteRow> element will appear after the second row in the data section of the XML document, indicating that the third row has been deleted.
+
+<deleteRow>
+  <columnValue>Espresso</columnValue>
+  <columnValue>9.99</columnValue>
+</deleteRow>
+
+
+Modifying Rows
+The owner further decides that the price of Colombian coffee is too expensive and wants to lower it to $6.99 a pound. The following code sets the new price for Colombian coffee, which is in the first row, to $6.99 a pound:
+
+priceList.first();
+priceList.updateFloat(PRICE, 6.99);
+
+The XML document will reflect this change in an <updateRow> element that gives the new value. The value for the first column did not change, so there is an <updateValue> element only for the second column:
+
+<currentRow>
+  <columnValue>Colombian</columnValue>
+  <columnValue>7.99</columnValue>
+  <updateRow>6.99</updateRow>
+</currentRow>
+
+
+At this point, with the insertion of a row, the deletion of a row, and the modification of a row, the XML document for the priceList object would look like the following:
+
+<data>
+  <insertRow>
+    <columnValue>Kona</columnValue>
+    <columnValue>8.99</columnValue>
+  </insertRow>
+  <currentRow>
+    <columnValue>Colombian</columnValue>
+    <columnValue>7.99</columnValue>
+    <updateRow>6.99</updateRow>
+  </currentRow>
+  <currentRow>
+    <columnValue>
+      Colombian_Decaf
+    </columnValue>
+    <columnValue>8.99</columnValue>
+  </currentRow>
+  <deleteRow>
+    <columnValue>Espresso</columnValue>
+    <columnValue>9.99</columnValue>
+  </deleteRow>
+  <currentRow>
+    <columnValue>French_Roast</columnValue>
+    <columnValue>8.99</columnValue>
+  </currentRow>
+  <currentRow>
+    <columnValue>
+      French_Roast_Decaf
+    </columnValue>
+    <columnValue>9.99</columnValue>
+  </currentRow>
+</data>
+
+WebRowSet Code Example
+The sample WebRowSetSample.java demonstrates all the features described on this page.

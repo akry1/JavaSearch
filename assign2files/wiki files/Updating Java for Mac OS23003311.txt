@@ -1,0 +1,1 @@
+Go to the Java download page.<br />Mechanically accept Oracle's license agreement.<br />Click on the link for Mac OS X.<br />Run the installer package.

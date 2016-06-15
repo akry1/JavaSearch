@@ -1,0 +1,1 @@
+reflection <br />A way of treating classes and methods as objects on their own, to be referred to during runtime, for instance by quering a particular class about its methods and their parameters.<br /><br /><br /><br /> Links<br />Java Programming<br />Glossary<br />Index

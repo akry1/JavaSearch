@@ -1,0 +1,1 @@
+There is no direct implementation for the java.util.Collection interface. The Collection interface has five sub interfaces.<br /><br /><br /><br />Figure 1: The five sub interfaces of the java.util.Collection interface.

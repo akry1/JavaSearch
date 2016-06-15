@@ -1,0 +1,1 @@
+If a class has public visibility, the class can be referenced by anywhere in the program.<br />If a class has package visibility, the class can be referenced only in the package where the class is defined.<br />If a class has private visibility, (it can happen only if the class is defined nested in an other class) the class can be accessed only in the outer class.

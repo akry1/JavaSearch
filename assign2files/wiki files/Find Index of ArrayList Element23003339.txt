@@ -1,0 +1,1 @@
+Returns the index in this list of the first occurrence of the specified element, or -1 if the List does not contain this element.<br /><br /><br /><br />int indexOf(Object o)<br /><br /><br />Returns the index in this list of the last occurrence of the specified element, or -1 if the list does not contain this element.<br /><br /><br /><br />int lastIndexOf(Object o)

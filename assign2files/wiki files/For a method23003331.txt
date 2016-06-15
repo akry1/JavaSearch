@@ -1,0 +1,1 @@
+The final keyword forbids to overwrite the method in a subclass. It is useless if the class is already final and a private method is implicitly final. A final method cannot be abstract.<br /><br /><br /><br />Code listing 2: NoOverwriting.java<br /><br /><br />1 public class NoOverwriting {<br />2   public final void sealedMethod() {<br />3   }<br />4 }

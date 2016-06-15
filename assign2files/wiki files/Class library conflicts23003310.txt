@@ -1,0 +1,1 @@
+extcheck — It can be used prior to the installation of a Java extension into the JDK or JRE environment. It checks if a particular Jar file conflicts with an already installed extension. This tool appeared first with Java 1.5.

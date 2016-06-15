@@ -1,0 +1,493 @@
+
+
+This page maps sections in the Java Tutorials to topics covered in the Java SE 7 Programmer II exam.  This exam is associated with the "Oracle Certified Professional, Java SE 7 Programmer" certificate. The topics covered in this exam are:
+
+Java Class Design
+Advanced Class Design
+Object-Oriented Design Principles
+Generics and Collections
+String Processing
+Exceptions and Assertions
+Java I/O Fundamentals
+Java File I/O (NIO.2)
+Building Database Applications with JDBC
+Threads
+Concurrency
+Localization
+
+Section 1: Java Class Design
+Item 1: Use access modifiers: private, protected, public.
+
+
+Controlling Access to Members of a Class
+
+
+Item 2: Override methods.
+
+
+Overriding and Hiding Methods
+
+Defining Methods
+
+Using the Keyword super
+
+
+Item 3: Overload constructors and other methods appropriately.
+
+
+Defining Methods
+
+
+Item 4: Use the instanceof operator and casting.
+
+
+Inheritance
+
+
+Item 5: Use virtual method invocation.
+
+
+Polymorphism
+
+
+Item 6: Override methods from the Object class to improve the functionality of your class.
+
+
+Overriding and Hiding Methods
+
+
+Item 7: Use package and import statements.
+
+
+Creating and Using Packages
+
+Using Package Members
+
+
+
+Section 2: Advanced Class Design
+Item 1: Identify when and how to apply abstract classes.
+
+
+Abstract Methods and Classes
+
+
+Item 2: Construct abstract Java classes and subclasses.
+
+
+Abstract Methods and Classes
+
+
+Item 3: Use the static and final keywords.
+
+
+Variables
+
+Understanding Class Members
+
+
+Item 4: Create top-level and nested classes.
+
+
+Declaring Classes
+
+Nested Classes
+
+
+Item 5: Use enumerated types.
+
+
+Enum Types
+
+
+
+Section 3: Object-Oriented Design Principles
+The Java Tutorials do not cover Design Patterns topics. The following references cover design patterns using the Java programming language:
+
+Head First Design Patterns by Elizabeth Freeman, et al
+Java Design Pattern Essentials by Tony Bevis
+
+Item 1: Write code that declares, implements and/or extends interfaces.
+
+
+Defining an Interface
+
+Interfaces
+
+Implementing an Interface
+
+
+Item 2: Choose between interface inheritance and class inheritance.
+
+Item 3: Develop code that implements "is-a" and/or "has-a" relationships.
+
+Item 4: Apply object composition principles.
+
+Item 5: Design a class using the Singleton design pattern.
+
+Item 6: Write code to implement the DAO pattern.
+
+Item 7: Design and create objects using a factory, and use factories from the API.
+
+
+Section 4: Generics and Collections
+The
+Generics (Updated) lesson, the
+Collections trail and, in particular, the specified pages.
+Item 1: Create a generic class.
+
+
+Generic Types
+
+
+Item 2: Use the diamond syntax to create a collection.
+
+
+The Diamond
+
+
+Item 3: Analyze the interoperability of collections that use raw types and generic types.
+
+
+Raw Types
+
+Type Inference
+
+
+Item 4: Use wrapper classes and autoboxing.
+
+
+The Numbers Classes
+
+Autoboxing and Unboxing
+
+
+Item 5: Create and use a List, a Set, and a Deque.
+
+
+The List Interface
+
+List Implementations
+
+The Set Interface
+
+List Implementations
+
+The Queue Interface
+
+Queue Implementations
+
+
+Item 6: Create and use a Map.
+
+
+The Map Interface
+
+Map Implementations
+
+
+Item 7: Use java.util.Comparator and java.lang.Comparable.
+
+
+Object Ordering
+
+The SortedMap Interface
+
+The SortedSet Interface
+
+
+Item 8: Sort and search arrays and lists.
+
+
+Algorithms
+
+The List Interface
+
+Object Ordering
+
+The SortedSet Interface
+
+The SortedMap Interface
+
+
+
+Section 5: String Processing
+Item 1: Search, parse and build strings.
+
+
+Strings
+
+Converting Between Numbers and Strings
+
+Comparing Strings and Portions of Strings
+
+Manipulating Characters in a String
+
+
+Item 2: Search, parse, and replace strings by using regular expressions.
+
+
+Methods of the Pattern Class
+
+Methods of the Matcher Class
+
+
+Item 3: Use string formatting.
+
+
+Strings
+
+Formatting Numeric Print Output
+
+
+
+Section 6: Exceptions and Assertions
+Item 1: Use throw and throws statements.
+
+
+Specifying the Exceptions Thrown by a Method
+
+How to Throw Exceptions
+
+
+Item 2: Use the try statement with multi-catch, and finally clauses.
+
+
+Catching and Handling Exceptions
+
+The try Block
+
+The catch Blocks
+
+The finally Block
+
+Putting It All Together
+
+
+Item 3: Autoclose resources with a try-with-resources statement.
+
+
+The try-with-resources Statement
+
+
+Item 4: Create custom exceptions.
+
+
+Creating Exception Classes
+
+
+Item 5: Test invariants by using assertions.
+
+
+Questions and Exercises: Classes (assertion example)
+
+
+
+Section 7: Java I/O Fundamentals
+Item 1: Read and write data from the console.
+The 
+I/O Streams lesson and, in particular, the following pages:
+
+
+Byte Streams
+
+I/O from the Command Line
+
+
+Item 2: Use streams to read and write files.
+The 
+File I/O (Featuring NIO.2) lesson, and in particular, the following pages:
+
+
+Reading, Writing, and Creating Files
+
+Creating and Reading Directories
+
+Random Access Files
+
+
+
+Section 8: Java File I/O (NIO.2)
+Item 1: Use the Path class to operate on file and directory paths.
+
+
+What Is a Path? (And Other File System Facts)
+
+Path Operations
+
+
+Item 2: Use the Files class to check, delete, copy, or move a file or directory.
+
+
+File Operations
+
+Checking a File or Directory
+
+Deleting a File or Directory
+
+Copying a File or Directory
+
+Moving a File or Directory
+
+
+Item 3: Read and change file and directory attributes.
+
+
+Managing Metadata (File and File Store Attributes)
+
+
+Item 4: Recursively access a directory tree.
+
+
+Walking the File Tree
+
+
+Item 5: Find a file by using the PathMatcher class.
+
+
+Finding Files
+
+What is a Glob?
+
+
+Item 6: Watch a directory for changes by using WatchService.
+
+
+Watching a Directory for Changes
+
+
+
+Section 9: Building Database Applicatons with JDBC
+Item 1: Define the layout of the JDBC API.
+
+
+JDBC Basics: Getting Started
+
+
+Item 2: Connect to a database by using a JDBC driver.
+
+
+Establishing a Connection
+
+Connecting with DataSource Objects
+
+
+Item 3: Update and query a database..
+
+
+Processing SQL Statements with JDBC
+
+
+Item 4: Customize the transaction behavior of JDBC and commit transactions.
+
+
+Using Transactions
+
+
+Item 5: Use the JDBC 4.1 RowSetProvider, RowSetFactory and RowSet interfaces.
+
+
+Using RowSet Objects
+
+Using JdbcRowSet Objects
+
+
+
+Section 10: Threads
+Item 1: Create and use the Thread class and the Runtime interface.
+
+
+Defining and Starting a Thread
+
+
+Item 2: Manage and control thread lifecycle.
+
+
+Pausing Execution with Sleep
+
+Interrupts
+
+Joins
+
+
+Item 3: Synchronize thread access to shared data.
+
+
+Synchronization
+
+Thread Interference
+
+Synchronized Methods
+
+Intrinsic Locks and Synchronization
+
+
+Item 4: Identify potential threading problems.
+
+
+Memory Consistency Errors
+
+Deadlock
+
+
+
+Section 11: Concurrency
+Item 1: Use java.util.concurrent collections.
+
+
+Concurrent Collections
+
+
+Item 2: Apply atomic variables and looks.
+
+
+Atomic Variables
+
+
+Item 3: Use Executors and ThreadPools.
+
+
+Executors
+
+Executor Interfaces
+
+Thread Pools
+
+
+Item 4: Use the parallel Fork/Join Framework.
+
+
+Fork/Join
+
+
+
+Section 12: Localization
+Item 1: Read and set the locale by using the Locale object..
+
+
+Setting the Locale
+
+Creating a Locale
+
+
+Item 2: Build a resource bundle for each locale.
+
+
+About the ResourceBundle Class
+
+Backing a ResourceBundle with Properties Files
+
+
+Item 3: Load a resource bundle in an application.
+
+
+Customizing Resource Bundle Loading
+
+
+Item 4: Format text for localization by using NumberFormat and DateFormat.
+
+
+Numbers and Currencies
+
+Dates and Times
+

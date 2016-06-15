@@ -1,0 +1,1 @@
+In Java, we can distinguish two kinds of equality.<br /><br />Object reference equality: when two object references point to the same object.<br />Object value equality: when two separate objects happen to have the same values/state.<br /><br />If two objects are equal in reference, they are equal in value too.

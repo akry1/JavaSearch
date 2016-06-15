@@ -1,0 +1,1 @@
+The == operator can be used to check if two object references point to the same object.<br /><br /><br /><br />Code section 5.19: Reference equality.<br /><br /><br />1 if (objRef1 == objRef2) {<br />2     // The two object references point to the same object<br />3 }

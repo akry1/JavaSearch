@@ -1,0 +1,3 @@
+
+This lesson presents the Document Object Model (DOM). A DOM is a standard tree structure, where each node contains one of the components from an XML structure. The two most common types of nodes are element nodes and text nodes. Using DOM functions lets you create nodes, remove nodes, change their contents, and traverse the node hierarchy.
+The examples in this lesson demonstrate how to parse an existing XML file to construct a DOM, display and inspect the DOM hierarchy, and explore the syntax of namespaces. It also shows how to create a DOM from scratch, and see how to use some of the implementation-specific features in Sun's JAXP implementation to convert an existing data set to XML.

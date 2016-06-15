@@ -1,0 +1,1 @@
+Going further any number of dimensional array can be defined.<br /><br /><br />elementType[][]...[] arrayName<br /><br /><br />or<br /><br /><br />elementType arrayName[][]...[]<br /><br /><br /><br /><br /><br /> Scope<br />Java Programming<br />Arrays<br />Mathematical functions

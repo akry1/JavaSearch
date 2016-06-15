@@ -1,0 +1,1 @@
+short is a keyword. It defines a 16 bit signed integer primitive type.<br />Syntax:<br /><br />short <variable-name> = <integer-value>;<br /><br />For example:<br /><br /><br /><br /><br /><br /><br />short age = 65;<br /><br /><br /><br /><br /><br />See also:<br /><br />Java Programming/Primitive Types

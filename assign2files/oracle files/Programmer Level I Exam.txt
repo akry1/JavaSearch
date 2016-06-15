@@ -1,0 +1,337 @@
+
+
+This page maps sections in the Java Tutorials to topics covered in the Java SE 7 Programmer I exam.  This exam is associated with the "Oracle Certified Associate, Java SE 7 Programmer" certificate.  The topics covered in this exam are:
+
+Java Basics
+Working with Java Data Types
+Using Operators and Decision Constructs
+Creating and Using Arrays
+Using Loop Constructs
+Working with Methods and Encapsulation
+Working with Inheritance
+Handling Exceptions
+
+Section 1: Java Basics
+Item 1: Define the scope of variables.
+
+
+Variables
+
+
+Item 2: Define the structure of a Java class.
+
+
+A Closer Look at the "Hello World!" Application
+
+Classes
+
+
+Item 3: Create executable Java applications with a main method.
+
+
+"Hello World!" for the NetBeans IDE
+
+"Hello World!" for Microsoft Windows
+
+"Hello World!" for Solaris OS and Linux
+
+A Closer Look at the "Hello World!" Application
+
+
+Item 4: Import other Java packages to make them accessible in your code.
+
+
+Creating and Using Packages
+
+Using Package Members
+
+
+
+Section 2: Working with Java Data Types
+Item 1: Declare and initialize variables.
+
+
+Variables
+
+Initializing Fields
+
+
+Item 2: Differentiate between object reference variables and primitive variables.
+
+
+Primitive Data Types
+
+The Numbers Classes
+
+
+Item 3: Read or write to object fields.
+
+
+Inheritance
+
+Declaring Member Variables
+
+Creating Objects
+
+Using Objects
+
+
+Item 4: Explain an object's lifecycle.
+
+
+Objects
+
+Creating Objects
+
+Using Objects
+
+
+Item 5: Call methods on objects.
+
+
+Using Objects
+
+
+Item 6: Manipulate data using the StringBuilder class and its methods.
+
+
+The StringBuilder Class
+
+Summary of Characters and Strings
+
+
+Item 7: Create and manipulate strings.
+
+
+Strings
+
+Converting Between Numbers and Strings
+
+Comparing Strings and Portions of Strings
+
+Manipulating Characters in a String
+
+
+
+Section 3: Using Operators and Decision Constructs
+Item 1: Use Java operators.
+
+
+Operators
+
+Assignment, Arithmetic, and Unary Operators
+
+Equality, Relational, and Conditional Operators 
+
+Bitwise and Bit Shift Operators
+
+
+Item 2: Use parentheses to override operator precedence.
+
+
+Expressions, Statements, and Blocks
+
+
+Item 3: Test equality between strings and other objects using == and equals().
+
+
+Object as a Superclass
+
+
+Item 4: Create and use if-else constructs.
+
+
+The if-then and if-then-else Statements
+
+
+Item 5: Use a switch statement.
+
+
+The switch Statement
+
+
+
+Section 4: Creating and Using Arrays
+Item 1: Declare, instantiate, initialize and use a one-dimensional array.
+
+
+Arrays
+
+
+Item 2: Declare, instantiate, initialize and use a multi-dimensional array.
+
+
+Arrays
+
+
+Item 3: Declare and use an ArrayList.
+
+
+The List Interface
+
+List Implementations
+
+
+
+Section 5: Using Loop Constructs
+Item 1: Create and use while loops.
+
+
+The while and do-while Statements
+
+
+Item 2: Create and use for loops including the enhanced for loop.
+
+
+The for Statement
+
+
+Item 3: Create and use do-while loops.
+
+
+The while and do-while Statements
+
+
+Item 4: Compare loop constructs.
+
+
+Summary of Control Flow Statements
+
+
+Item 5: Use break and continue.
+
+
+Branching Statements
+
+
+
+Section 6: Working with Methods and Encapsulation
+Item 1: Create methods with arguments and return values.
+
+
+Returning a Value from a Method
+
+
+Item 2: Apply the static keyword to methods and fields.
+
+
+Variables
+
+Understanding Class Members
+
+
+Item 3: Create an overloaded method.
+
+
+Defining Methods
+
+
+Item 4: Differentiate between default and user-defined constructors.
+
+
+Providing Constructors for Your Classes
+
+
+Item 5: Apply access modifiers.
+
+
+Controlling Access to Members of a Class
+
+
+Item 6: Apply encapsulation principles to a class.
+
+
+Inheritance
+
+Inner Class Example
+
+Nested Classes
+
+
+Item 7: Determine the effect upon object references and primitive values when they are passed into methods that change the values.
+
+
+Passing Information to a Method or a Constructor
+
+
+
+Section 7: Working with Inheritance
+Item 1: Implement inheritance.
+
+
+Inheritance
+
+Overriding and Hiding Methods
+
+
+Item 2: Develop code that demonstrates the use of polymorphism.
+
+
+Polymorphism
+
+
+Item 3: Differentiate between the type of a reference and the type of an object.
+
+
+Creating Objects
+
+Using Objects
+
+
+Item 4: Determine when casting is necessary.
+
+
+Inheritance
+
+
+Item 5: Use super and this to access objects and constructors.
+
+
+Using the Keyword super
+
+Using the this Keyword
+
+
+Item 6: Use abstract classes and interfaces.
+
+
+Abstract Methods and Classes
+
+Defining an Interface
+
+Implementing an Interface
+
+
+
+Section 8: Handling Exceptions
+Item 1: Differentiate among checked exceptions, RuntimeException, and Error.
+
+
+The Catch or Specify Requirement
+
+
+Item 2: Create a try-catch block and determine how exceptions alter normal program flow.
+
+
+Catching and Handling Exceptions
+
+The try Block
+
+The catch Blocks
+
+
+Item 3: Describe what exceptions are used for in Java.
+
+
+What Is an Exception?
+
+Advantages of Exceptions
+
+
+Item 4: Invoke a method that throws an exception.
+
+
+Catching Exceptions
+
+
+Item 5: Recognize common exception classes and categories.
